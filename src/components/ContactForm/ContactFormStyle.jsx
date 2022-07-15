@@ -9,7 +9,7 @@ export const AddForm = styled(Form)`
 	max-width: 400px;
 	height: 240px;
 	padding: 20px;
-	border-radius: 5px;
+	/* border-radius: 5px; */
 	background-color: ${(props) => props.theme.colors.greyBg};
 	
 `;

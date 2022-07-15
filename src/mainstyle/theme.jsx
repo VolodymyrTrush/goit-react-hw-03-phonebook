@@ -9,7 +9,7 @@ export const theme = Object.freeze({
 		buttonBg: "#2196f3",
 		buttonText: "#353e42",
 		colorShadow: "#a1a6b8",
-		colorBg: "#a9cec7",
+		colorBg: "#a9c2ce",
 	},
 	fonts: {
 		secondary: "'Work Sans', sans-serif",
