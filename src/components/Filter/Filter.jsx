@@ -1,34 +1,29 @@
-import PropTypes from 'prop-types';
+import { Component } from "react";
+import { FilterInput, FilterWrapper } from "./FilterStyle";
+import { LabelForm } from "../ContactForm/ContactFormStyle";
+import propTypes from "prop-types";
 
-import styles from './Filter.module.scss';
+export class Filter extends Component {
+	handleChange = ({ target: { value } }) => {
+		this.props.onChange(value);
+	};
 
-// Принимает значение с поля фильтра и метод пишущий в стейт
-const Filter = ({ value, onChange }) => {
-  return (
-    <label className={styles.label}>
-      Find contacts by name
-      <input
-        type="text"
-        name="filter"
-        placeholder="Find..."
-        className={styles.input}
-        value={value}
-        onChange={onChange}
-        pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-        title="Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
-        required
-      />
-    </label>
-  );
-};
-
-Filter.defaultProps = {
-  value: '',
-};
+	render() {
+		return (
+			<FilterWrapper>
+				<LabelForm htmlFor="filter">Find contacts by name</LabelForm>
+				<div>
+					<FilterInput
+						name="filter"
+						type="filter"
+						onChange={this.handleChange}
+					/>
+				</div>
+			</FilterWrapper>
+		);
+	}
+}
 
 Filter.propTypes = {
-  value: PropTypes.string,
-  onChange: PropTypes.func.isRequired,
+	onChange: propTypes.func.isRequired,
 };
-
-export default Filter;

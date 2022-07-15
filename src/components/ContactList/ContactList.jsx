@@ -1,35 +1,23 @@
-import PropTypes from 'prop-types';
-import ContactItem from '../ContactItem';
-
-import styles from './ContactList.module.scss';
-
-// Принимает все контакты и пробрасывает дальше метод для удаления контакта
-const ContactList = ({ contacts, onDeleteContact }) => {
-  return (
-    <ul className={styles.list}>
-      {contacts.map(contact => (
-        <li className={styles.item} key={contact.id}>
-          <ContactItem
-            contact={contact}
-            onDeleteContact={() => {
-              onDeleteContact(contact.id); // Метод на клике, принимает ID контакта
-            }}
-          />
-        </li>
-      ))}
-    </ul>
-  );
+import { List } from "./ContactListStyle";
+import { ContactItem } from "./ContactItem/ContactItem";
+import propTypes from "prop-types";
+export const ContactList = ({ filterContacts, onDelete }) => {
+	return (
+		<List>
+			{filterContacts().map(({ name, number, id }) => (
+				<ContactItem
+					key={id}
+					name={name}
+					id={id}
+					number={number}
+					onDelete={onDelete}
+				/>
+			))}
+		</List>
+	);
 };
 
 ContactList.propTypes = {
-  contacts: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      number: PropTypes.string.isRequired,
-    }),
-  ),
-  onDeleteContact: PropTypes.func.isRequired,
+	filterContacts: propTypes.func.isRequired,
+	onDelete: propTypes.func.isRequired,
 };
-
-export default ContactList;

@@ -1,13 +1,17 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App.jsx';
-
-import 'modern-normalize/modern-normalize.css';
-import './App.module.scss';
+import React from "react";
+import ReactDOM from "react-dom";
+import { ToastContainer } from "react-toastify";
+import "../node_modules/modern-normalize/modern-normalize.css";
+import { ThemeProvider } from "styled-components";
+import { theme } from "./mainstyle/theme";
+import { App } from "./App";
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root'),
+	<React.StrictMode>
+		<ThemeProvider theme={theme}>
+			<App />
+			<ToastContainer position="top-center" autoClose={3000} />
+		</ThemeProvider>
+	</React.StrictMode>,
+	document.getElementById("root")
 );
