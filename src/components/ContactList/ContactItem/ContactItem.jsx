@@ -1,7 +1,17 @@
-import { Item } from "./ContactItemStyle";
-import { ReactComponent as DeleteIcon } from "../../../Icon/delicon.svg";
+
+import { ReactComponent as DeleteIcon } from "../../../icon/delicon.svg";
 import { IconButton } from "../../Buttons/IconButton";
 import propTypes from "prop-types";
+import styled from "styled-components";
+
+const Item = styled.li`
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	&:not(:last-child) {
+		margin-bottom: 10px;
+	}
+`;
 
 export const ContactItem = ({ id, name, number, onDelete }) => {
 	return (

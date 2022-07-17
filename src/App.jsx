@@ -1,9 +1,11 @@
 import { Component } from 'react';
-import { GlobalStyle } from './mainstyle/GlobalStyle';
+import { GlobalStyle } from './style/GlobalStyle';
 import { ContactForm } from './components/ContactForm/ContactForm';
 import { ContactList } from './components/ContactList/ContactList';
 import { Filter } from './components/Filter/Filter';
-import { Container, MainTitle, SubTitle } from './components/AppStyle';
+import { Container } from './components/common/ContainerStyle';
+import { MainTitle } from './components/common/MainTitleStyle';
+import { SubTitle } from './components/common/SubTitleStyle';
 
 export class App extends Component {
   state = {
@@ -16,11 +18,9 @@ export class App extends Component {
     filter: '',
   };
 
-  STORAGE_KEY = 'contacts';
-
   componentDidMount() {
     const conactsToLocalStorage = JSON.parse(
-      localStorage.getItem(this.STORAGE_KEY)
+      localStorage.getItem('contacts')
     );
     if (conactsToLocalStorage) {
       this.setState({ contacts: conactsToLocalStorage });
@@ -30,7 +30,7 @@ export class App extends Component {
   componentDidUpdate(prevProps, prevState) {
     if (this.state.contacts !== prevState.contacts) {
       localStorage.setItem(
-        this.STORAGE_KEY,
+        'contacts',
         JSON.stringify(this.state.contacts)
       );
     }

@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import { ToastContainer } from "react-toastify";
 import "../node_modules/modern-normalize/modern-normalize.css";
 import { ThemeProvider } from "styled-components";
-import { theme } from "./mainstyle/theme";
+import { theme } from "./style/theme";
 import { App } from "./App";
 
 ReactDOM.render(

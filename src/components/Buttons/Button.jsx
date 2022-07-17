@@ -1,10 +1,20 @@
-import { AddButton } from "./ButtonStyle";
+import React from "react";
 import propTypes from "prop-types";
-export const Button = ({ type, onClick, text }) => {
+import styled from 'styled-components';
+
+const StyledButton = styled.button`
+  padding: 10px 20px;
+  margin: 0 auto;
+  max-width: 100%;
+  background-color: ${props => props.theme.colors.buttonBg};
+  color: ${props => props.theme.colors.buttonText};
+`;
+
+export const Button = ({ type, onClick, children }) => {
 	return (
-		<AddButton type={type} onClick={onClick}>
-			{text}
-		</AddButton>
+		<StyledButton type={type} onClick={onClick}>
+			{children}
+		</StyledButton>
 	);
 };
 
@@ -13,3 +23,5 @@ Button.propTypes = {
 	onClick: propTypes.func,
 	text: propTypes.string,
 };
+
+

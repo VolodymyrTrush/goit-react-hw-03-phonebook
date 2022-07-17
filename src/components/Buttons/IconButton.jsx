@@ -1,12 +1,19 @@
 import React from "react";
 import propTypes from "prop-types";
-import { DelButton } from "./ButtonStyle";
+import styled from 'styled-components';
+
+const IconButtonWrapper = styled.button`
+  padding: 10px;
+  min-width: 40px;
+  background-color: ${props => props.theme.colors.buttonBg};
+  fill: ${props => props.theme.colors.buttonText};
+`;
 
 export const IconButton = ({ children, onClick, ...allyProps }) => {
 	return (
-		<DelButton type="button" onClick={onClick} {...allyProps}>
+		<IconButtonWrapper type="button" onClick={onClick} {...allyProps}>
 			{children}
-		</DelButton>
+		</IconButtonWrapper>
 	);
 };
 

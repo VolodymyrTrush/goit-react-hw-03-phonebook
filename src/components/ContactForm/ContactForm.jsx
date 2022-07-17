@@ -1,16 +1,57 @@
 import { Component } from "react";
-import { Formik, ErrorMessage } from "formik";
+import { Formik, ErrorMessage, Form, Field } from "formik";
 import { nanoid } from "nanoid";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Button } from "../Buttons/Button";
-import { AddForm, Input, Message, LabelForm } from "./ContactFormStyle";
+import * as yup from 'yup';
 import propTypes from "prop-types";
+import styled from "styled-components";
+import { font } from "../../style/mixins";
+
+const AddForm = styled(Form)`
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	max-width: 400px;
+	height: 240px;
+	padding: 20px;
+	background-color: ${(props) => props.theme.colors.greyBg};
+`;
+
+const Input = styled(Field)`
+	border: 0;
+	outline: 0;
+	width: 100%;
+	margin-bottom: 10px;
+	padding: 10px;
+`;
+
+const Message = styled.p`
+	${font({ fs: 14, fw: 400, lh: 16 })};
+	color: ${(props) => props.theme.colors.red};
+	display: block;
+	margin-bottom: 4px;
+`;
+
+export const LabelForm = styled.label`
+	${font({ fs: 16, fw: 700, lh: 20 })};
+	display: block;
+	margin-bottom: 10px;
+`;
 
 const initialValues = {
 	name: "",
 	number: "",
 };
+
+const pattern = /^[\d+][\d()-]{4,14}\d$/i;
+const schema = yup.object({
+  name: yup.string().required(),
+  number: yup.string().required().test({
+    test: (value) => pattern.test(value),
+  }),
+});
 
 const FormError = ({ name }) => {
 	return (
@@ -37,7 +78,7 @@ export class ContactForm extends Component {
 
 	render() {
 		return (
-			<Formik initialValues={initialValues} onSubmit={this.handleSubmit}>
+			<Formik initialValues={initialValues} validationSchema={schema} onSubmit={this.handleSubmit}>
 				<AddForm autoComplete="off">
 					<div>
 						<LabelForm htmlFor="name">Name</LabelForm>
@@ -45,9 +86,7 @@ export class ContactForm extends Component {
 							<Input
 								type="text"
 								name="name"
-								pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-								title="Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
-								required
+								
 							/>
 							<FormError name="name" />
 						</div>
@@ -58,9 +97,7 @@ export class ContactForm extends Component {
 							<Input
 								type="tel"
 								name="number"
-								pattern="(\+?( |-|\.)?\d{1,2}( |-|\.)?)?(\(?\d{3}\)?|\d{3})( |-|\.)?(\d{3}( |-|\.)?\d{4})"
-								title="Номер телефона должен состоять из 11-12 цифр и может содержать цифры, пробелы, тире, пузатые скобки и может начинаться с +"
-								required
+								
 							/>
 							<FormError name="number" />
 						</div>
