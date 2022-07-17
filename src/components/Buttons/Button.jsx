@@ -10,7 +10,7 @@ const StyledButton = styled.button`
   color: ${props => props.theme.colors.buttonText};
 `;
 
-export const Button = ({ type, onClick, children }) => {
+export const Button = ({ children, type, onClick,  }) => {
 	return (
 		<StyledButton type={type} onClick={onClick}>
 			{children}
@@ -21,7 +21,7 @@ export const Button = ({ type, onClick, children }) => {
 Button.propTypes = {
 	type: propTypes.string.isRequired,
 	onClick: propTypes.func,
-	text: propTypes.string,
+	children: propTypes.node,
 };
 
 

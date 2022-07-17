@@ -102,7 +102,7 @@ export class ContactForm extends Component {
 							<FormError name="number" />
 						</div>
 					</div>
-					<Button type="submit" text={"Add contact"} />
+					<Button type="submit" children={"Add contact"} />
 				</AddForm>
 			</Formik>
 		);
