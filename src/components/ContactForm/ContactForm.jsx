@@ -45,11 +45,10 @@ const initialValues = {
 	number: "",
 };
 
-const pattern = /^[\d+][\d()-]{4,14}\d$/i;
 const schema = yup.object({
   name: yup.string().required(),
   number: yup.string().required().test({
-    test: (value) => pattern.test(value),
+    test: (value) => /^[\d+][\d()-]{4,14}\d$/i.test(value),
   }),
 });
 
