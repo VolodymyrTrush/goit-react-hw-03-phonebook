@@ -1,5 +1,5 @@
 
-import { ReactComponent as DeleteIcon } from "../../../Icon1/delicon.svg";
+import { ReactComponent as DeleteIcon } from "../../../Icon/delicon.svg";
 import { IconButton } from "../../Buttons/IconButton";
 import propTypes from "prop-types";
 import styled from "styled-components";
