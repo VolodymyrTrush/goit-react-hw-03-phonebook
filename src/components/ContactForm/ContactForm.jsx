@@ -3,7 +3,7 @@ import { Formik, ErrorMessage, Form, Field } from "formik";
 import { nanoid } from "nanoid";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Button } from "../Buttons/Button";
+import { Button } from "../common/Buttons/Button";
 import * as yup from 'yup';
 import propTypes from "prop-types";
 import styled from "styled-components";
@@ -40,11 +40,6 @@ export const LabelForm = styled.label`
 	margin-bottom: 10px;
 `;
 
-const initialValues = {
-	name: "",
-	number: "",
-};
-
 const schema = yup.object({
   name: yup.string().required(),
   number: yup.string().required().test({
@@ -77,7 +72,10 @@ export class ContactForm extends Component {
 
 	render() {
 		return (
-			<Formik initialValues={initialValues} validationSchema={schema} onSubmit={this.handleSubmit}>
+			<Formik initialValues={{
+	name: "",
+	number: "",
+}} validationSchema={schema} onSubmit={this.handleSubmit}>
 				<AddForm autoComplete="off">
 					<div>
 						<LabelForm htmlFor="name">Name</LabelForm>

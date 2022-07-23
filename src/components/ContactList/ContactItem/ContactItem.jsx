@@ -1,6 +1,6 @@
 
 import { ReactComponent as DeleteIcon } from "../../../Icon/delicon.svg";
-import { IconButton } from "../../Buttons/IconButton";
+import { IconButton } from "../../common/Buttons/IconButton";
 import propTypes from "prop-types";
 import styled from "styled-components";
 
